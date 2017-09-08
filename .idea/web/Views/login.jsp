@@ -19,12 +19,12 @@
     <div class="container">
         <div class="row">
             <div class="h-25 bg-inverse">
-                <form class="p-2 m-5">
+                <form class="p-2 m-5" action="/src/Actions/LoginAction" method="post">
                     <div class="form-group"> <label>Email address</label>
                         <input class="form-control" placeholder="Enter email" type="email"> </div>
                     <div class="form-group"> <label>Password</label>
                         <input class="form-control" placeholder="Password" type="password"> </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" value="Login"/>
                 </form>
             </div>
             <div class="col-md-8 text-white">
