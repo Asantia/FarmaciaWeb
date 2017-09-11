@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="userCon" scope="session" class="Beans.UtenteConnessoBean" />
 
 <html>
 
@@ -17,6 +16,7 @@
     <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"> </head>
 
 <body>
+<jsp:useBean id="userCon" scope="session" class="Beans.UtenteConnessoBean" />
 <%
     if(userCon.getConnesso()==true && userCon.getAbiliazione().equals("reg")){
 %>
@@ -44,7 +44,7 @@
 %>
 <div class="container">
     <h1>Email o password errata</h1>
-    <h2> <a href="login.jsp">Login</a></h2>
+    <h2> <a href="../../login.jsp">Login</a></h2>
 </div>
 <%
     }

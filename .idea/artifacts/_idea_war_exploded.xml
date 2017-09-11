@@ -6,6 +6,10 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name=".idea" />
+          <element id="dir-copy" path="C:/apache-tomcat-8.5.15" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="struts-1.3.x" />
         </element>
       </element>
     </root>

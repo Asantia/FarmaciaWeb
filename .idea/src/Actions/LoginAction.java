@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionMapping;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.lang.*;
-import Beans.UtenteConnessoBean;
+import Beans.*;
 
 public class LoginAction extends Action{
     @Override
@@ -28,7 +28,7 @@ public class LoginAction extends Action{
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Db_Farmacia", "postgres", "$Postgres22.");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "postgres");
 
             String query="SELECT email, password, abilitazione, idfarmacia FROM utente WHERE email=? AND password=?";
             st = conn.prepareStatement(query);
@@ -45,7 +45,8 @@ public class LoginAction extends Action{
 
                 abilitazione=rs.getString("abilitazione");
 
-                idFarmacia=rs.getInt("idfarmacia");
+                if(!(abilitazione.equals("reg")))
+                    idFarmacia=rs.getInt("idfarmacia");
 
             }
             rs.close();
@@ -59,9 +60,9 @@ public class LoginAction extends Action{
         }
 
         if(!testEmail.equals(email)||(email.trim().length()<1))
-            return(mapping.findForward("bad-user"));
+            return(mapping.findForward("loginerrato"));
         if(!testPassword.equals(password)||(password.trim().length()<1))
-            return(mapping.findForward("bad-password"));
+            return(mapping.findForward("loginerrato"));
         else {
             UtenteConnessoBean userCon = new UtenteConnessoBean();
             userCon.setEmail(testEmail);
@@ -71,10 +72,13 @@ public class LoginAction extends Action{
             request.getSession().setAttribute("utenteConnesso", userCon);
             request.getSession().setAttribute("userCon", userCon);
 
-            return mapping.findForward("success");
+            if(abilitazione.equals("reg"))
+                return mapping.findForward("homeRegione");
+            if(abilitazione.equals("tf"))
+                return mapping.findForward("homeTitolare");
+            else
+                return mapping.findForward("homeDipendenti");
         }
     }
-
-
 
 }
