@@ -26,7 +26,7 @@ To change this template use File | Settings | File Templates.
         <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="/out/artifacts/_idea_war_exploded/login.jsp">Logout</a>
     </li>
 </ul>
 <div class="row p-1">
@@ -37,7 +37,7 @@ To change this template use File | Settings | File Templates.
         <a class="btn btn-primary btn-lg btn-block" href="#">Posta Inviata </a>
     </div>
     <div class="col-md-4">
-        <a class="btn btn-primary btn-lg btn-block" href="nuovoMessaggioRegione.html">Nuovo Messaggio </a>
+        <a class="btn btn-primary btn-lg btn-block" href="nuovoMessaggioRegione.jsp">Nuovo Messaggio </a>
     </div>
 </div>
 <div class="row m-1">

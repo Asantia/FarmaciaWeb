@@ -26,10 +26,24 @@ To change this template use File | Settings | File Templates.
         <a class="nav-link active" href="#">Registra una nuova farmacia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="/out/artifacts/_idea_war_exploded/login.jsp">Logout</a>
     </li>
 </ul>
-<form class="w-50 h-50 m-3 p-3" style="">
+<form class="w-50 h-50 m-3 p-3" style="" action="/.idea/src/Actions/NuovaFarmaciaAction.java" method="post">
+    <div class="form-group"> <label>Nome Farmacia</label>
+        <input class="form-control" placeholder="Nome Farmacia" type="text"> </div>
+    <div class="form-group"> <label>Citta'</label>
+        <input class="form-control" placeholder="Citta" type="text"> </div>
+    <div class="form-group"> <label>Via</label>
+        <input class="form-control" placeholder="Via" type="text"> </div>
+    <div class="form-group"> <label>Numero Civico</label>
+        <input class="form-control" placeholder="Numero Civico" type="text"> </div>
+    <div class="form-group"> <label>Telefono</label>
+        <input class="form-control" placeholder="Telefono" type="text"> </div>
+    <div class="form-group"> <label>CAP</label>
+        <input class="form-control" placeholder="CAP" type="text"> </div>
+
+
     <div class="form-group"> <label>Email address Titolare</label>
         <input class="form-control" placeholder="Enter email" type="email"> </div>
     <div class="form-group"> <label>Password Titolare</label>
@@ -38,8 +52,6 @@ To change this template use File | Settings | File Templates.
         <input class="form-control" placeholder="Nome" type="text"> </div>
     <div class="form-group"><label>Cognome</label>
         <input class="form-control" placeholder="Cognome" type="text"> </div>
-    <div class="form-group"><label>Id Farmacia</label>
-        <input class="form-control" placeholder="Id Farmacia" type="text"> </div>
     <button type="submit" class="btn btn-primary btn-block">Registra</button>
 </form>
 

@@ -18,7 +18,7 @@
         <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
     </li>
     <li class="nav-item">
-        <a href="/.idea/out/artifacts/_idea_war_exploded/login.jsp" class="nav-link">Logout</a>
+        <a href="/out/artifacts/_idea_war_exploded/login.jsp" class="nav-link">Logout</a>
     </li>
 </ul>
 <div class="row p-1">

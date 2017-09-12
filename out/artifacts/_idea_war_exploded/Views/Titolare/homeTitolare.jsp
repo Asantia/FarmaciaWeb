@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"> </head>
 
 <body>
+<jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
+<%
+    if(userCon.getConnesso()==true && userCon.getAbiliazione().equals("tf")){
+%>
 <ul class="nav nav-pills" style="">
     <li class="nav-item">
         <a href="#" class="nav-link active"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
@@ -27,7 +31,7 @@
         <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="/out/artifacts/_idea_war_exploded/login.jsp">Logout</a>
     </li>
 </ul>
 <div class="row m-1 p-1">
@@ -57,6 +61,19 @@
         </div>
     </div>
 </div>
+
+<%
+}
+else{
+%>
+<div class="container">
+    <h1>Email o password errata</h1>
+    <h2> <a href="../../login.jsp">Login</a></h2>
+</div>
+<%
+    }
+%>
+
 </body>
 
 </html>

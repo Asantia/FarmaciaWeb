@@ -26,7 +26,7 @@
         <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="/out/artifacts/_idea_war_exploded/login.jsp">Logout</a>
     </li>
 </ul>
 <div class="row p-1">

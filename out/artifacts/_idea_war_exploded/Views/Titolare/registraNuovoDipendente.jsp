@@ -27,16 +27,20 @@
         <a href="#" class="nav-link active">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="/out/artifacts/_idea_war_exploded/login.jsp">Logout</a>
     </li>
 </ul>
 <form class="w-50 h-50 m-3 p-3" style="">
-    <div class="form-group"> <label>Email address Titolare</label>
+    <div class="form-group"> <label>Email address</label>
         <input class="form-control" placeholder="Enter email" type="email"> </div>
-    <div class="form-group"> <label>Password Titolare</label>
+    <div class="form-group"> <label>Password</label>
         <input class="form-control" placeholder="Password" type="password"> </div>
-    <div class="form-group"><label>Label</label>
-        <input class="form-control" placeholder="Text" type="text"> </div>
+    <div class="form-group"><label>Nome</label>
+        <input class="form-control" placeholder="Nome" type="text"> </div>
+    <div class="form-group"><label>Cognome</label>
+        <input class="form-control" placeholder="Cognome" type="text"> </div>
+    <div class="form-group"><label>Abilitazione</label>
+        <input class="form-control" placeholder="Abilitazione" type="text"> </div>
     <button type="submit" class="btn btn-primary btn-block">Registra</button>
 </form>
 

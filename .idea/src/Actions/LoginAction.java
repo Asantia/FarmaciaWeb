@@ -43,10 +43,10 @@ public class LoginAction extends Action{
 
                 testPassword = rs.getString("password");
 
-                abilitazione=rs.getString("abilitazione");
+                abilitazione = rs.getString("abilitazione");
 
                 if(!(abilitazione.equals("reg")))
-                    idFarmacia=rs.getInt("idfarmacia");
+                    idFarmacia = rs.getInt("idfarmacia");
 
             }
             rs.close();

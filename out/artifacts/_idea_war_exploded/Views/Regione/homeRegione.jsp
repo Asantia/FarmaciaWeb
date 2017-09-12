@@ -31,7 +31,7 @@
         <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="../login.jsp">Logout</a>
+        <a class="nav-link" href="../../login.jsp">Logout</a>
     </li>
 </ul>
 <div class="col-md-8">
