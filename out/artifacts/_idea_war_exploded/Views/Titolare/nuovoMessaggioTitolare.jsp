@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: csantia
-  Date: 8/9/2017
-  Time: 11:48 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -17,13 +9,22 @@
 <body>
 <ul class="nav nav-pills" style="">
     <li class="nav-item">
-        <a class="nav-link" href="homeRegione.jsp" > <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+        <a href="homeTitolare.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="#" >Messaggi</a>
+        <a href="#" class="nav-link active">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
+        <a href="vendixTitolare.jsp" class="nav-link">Vendi</a>
+    </li>
+    <li class="nav-item">
+        <a href="compra.jsp" class="nav-link">Compra</a>
+    </li>
+    <li class="nav-item">
+        <a href="magazzino.jsp" class="nav-link">Magazzino</a>
+    </li>
+    <li class="nav-item">
+        <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../login.jsp">Logout</a>
@@ -52,7 +53,7 @@
 </div>
 <div class="row p-1">
     <div class="col-md-4">
-        <a class="btn btn-primary btn-lg btn-block" href="messaggiRegione.jsp">Invia</a>
+        <a class="btn btn-primary btn-lg btn-block" href="messaggiTitolare.jsp">Invia</a>
     </div>
 </div>
 </body>

@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionMapping;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.lang.*;
-import Beans.*;
+import beans.UtenteConnessoBean;
 
 public class LoginAction extends Action{
     @Override

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"> </head>
 
 <body>
-<jsp:useBean id="userCon" scope="session" class="Beans.UtenteConnessoBean" />
+<jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean" />
 <%
     if(userCon.getConnesso()==true && userCon.getAbiliazione().equals("reg")){
 %>
@@ -25,13 +25,13 @@
         <a href="#" class="active nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="messaggiRegione.html">Messaggi</a>
+        <a class="nav-link" href="messaggiRegione.jsp">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="registraNuovaFarmacia.html">Registra una nuova farmacia</a>
+        <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="file:///C:/Users/csantia/Desktop/Prog%20ALICE/webProva/login.html">Logout</a>
+        <a class="nav-link" href="../login.jsp">Logout</a>
     </li>
 </ul>
 <div class="col-md-8">
@@ -39,8 +39,8 @@
 </div>
 }
 <%
-    }
-    else{
+}
+else{
 %>
 <div class="container">
     <h1>Email o password errata</h1>

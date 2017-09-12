@@ -1,11 +1,3 @@
-<%--
-Created by IntelliJ IDEA.
-User: csantia
-Date: 8/9/2017
-Time: 11:49 AM
-To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -17,13 +9,22 @@ To change this template use File | Settings | File Templates.
 <body>
 <ul class="nav nav-pills" style="">
     <li class="nav-item">
-        <a class="nav-link" href="homeRegione.jsp"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+        <a href="homeTitolare.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="messaggiRegione.jsp">Messaggi</a>
+        <a href="messaggiTitolare.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="#">Registra una nuova farmacia</a>
+        <a href="vendixTitolare.jsp" class="nav-link">Vendi</a>
+    </li>
+    <li class="nav-item">
+        <a href="compra.jsp" class="nav-link">Compra</a>
+    </li>
+    <li class="nav-item">
+        <a href="magazzino.jsp" class="nav-link">Magazzino</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link active">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="../login.jsp">Logout</a>
@@ -34,12 +35,8 @@ To change this template use File | Settings | File Templates.
         <input class="form-control" placeholder="Enter email" type="email"> </div>
     <div class="form-group"> <label>Password Titolare</label>
         <input class="form-control" placeholder="Password" type="password"> </div>
-    <div class="form-group"><label>Nome</label>
-        <input class="form-control" placeholder="Nome" type="text"> </div>
-    <div class="form-group"><label>Cognome</label>
-        <input class="form-control" placeholder="Cognome" type="text"> </div>
-    <div class="form-group"><label>Id Farmacia</label>
-        <input class="form-control" placeholder="Id Farmacia" type="text"> </div>
+    <div class="form-group"><label>Label</label>
+        <input class="form-control" placeholder="Text" type="text"> </div>
     <button type="submit" class="btn btn-primary btn-block">Registra</button>
 </form>
 
