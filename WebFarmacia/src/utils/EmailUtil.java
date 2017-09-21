@@ -20,7 +20,7 @@ public class EmailUtil {
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
         }
         catch (Exception e) {
-            System.out.println("Errore di connessione al DB"+ e.getMessage() );
+            System.out.println("Errore di connessione al DB "+ e.getMessage() );
         }
     }
 
@@ -33,7 +33,7 @@ public class EmailUtil {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("Inviato a ") + "</p></td><td><p>" + rs.getString("Oggetto") + "</p></td><td><p>" + rs.getString("Testo") + "</p></td>");
+                output = output.concat("<tr><td><p>" + rs.getString("emaildest") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td>");
             }
 
             rs.close();
@@ -55,7 +55,7 @@ public class EmailUtil {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("Inviato da ") + "</p></td><td><p>" + rs.getString("Oggetto") + "</p></td><td><p>" + rs.getString("Testo") + "</p></td>");
+                output = output.concat("<tr><td><p>" + rs.getString("email") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td>");
             }
 
             rs.close();
@@ -63,7 +63,7 @@ public class EmailUtil {
             conn.close();
         }
         catch (Exception e) {
-            System.out.println("Errore di connessione al DB"+ e.getMessage() );
+            System.out.println("Errore di connessione al DB "+ e.getMessage() );
 
         }
         return output;
