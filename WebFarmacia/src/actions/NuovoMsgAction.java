@@ -44,10 +44,9 @@ public class NuovoMsgAction extends Action {
 
                 while (rs.next()){
                     emaildest = rs.getString("email");
-
                     try {
                         PreparedStatement st2 = null;
-                        String query2="INSERT INTO messaggio(emaildest, oggetto, testo, data, email) VALUE (?,?,?,?,?)";
+                        String query2="INSERT INTO messaggio(emaildest, oggetto, testo, data, email) VALUES (?,?,?,?,?)";
                         st2 = conn.prepareStatement(query2);
                         st2.setString(1,emaildest);
                         st2.setString(2,oggetto);
@@ -89,7 +88,7 @@ public class NuovoMsgAction extends Action {
 
                     try {
                         PreparedStatement st2 = null;
-                        String query2="INSERT INTO messaggio(emaildest, oggetto, testo, data, email) VALUE (?,?,?,?,?)";
+                        String query2="INSERT INTO messaggio(emaildest, oggetto, testo, data, email) VALUES (?,?,?,?,?)";
                         st2 = conn.prepareStatement(query2);
                         st2.setString(1,emaildest);
                         st2.setString(2,oggetto);
