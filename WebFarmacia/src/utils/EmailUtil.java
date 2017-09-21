@@ -26,14 +26,14 @@ public class EmailUtil {
 
     public String sent(String emailUtente){
         String output="";
-        String query="SELECT emaildest , oggetto, testo FROM messaggio WHERE email=?";
+        String query="SELECT emaildest , oggetto, testo, data FROM messaggio WHERE email=?";
         try {
             st = conn.prepareStatement(query);
             st.setString(1, emailUtente);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("emaildest") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td>");
+                output = output.concat("<tr><td><p>" + rs.getString("emaildest") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td><td><p>" + rs.getString("data") + "</p></td>");
             }
 
             rs.close();
@@ -48,14 +48,14 @@ public class EmailUtil {
 
     public String received(String emailUtente){
         String output="";
-        String query="SELECT email , oggetto, testo FROM messaggio WHERE emaildest=?";
+        String query="SELECT email , oggetto, testo, data FROM messaggio WHERE emaildest=?";
         try {
             st = conn.prepareStatement(query);
             st.setString(1, emailUtente);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("email") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td>");
+                output = output.concat("<tr><td><p>" + rs.getString("email") + "</p></td><td><p>" + rs.getString("oggetto") + "</p></td><td><p>" + rs.getString("testo") + "</p></td><td><p>" + rs.getString("data") + "</p></td>");
             }
 
             rs.close();
