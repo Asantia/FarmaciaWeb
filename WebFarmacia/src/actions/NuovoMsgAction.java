@@ -21,6 +21,9 @@ public class NuovoMsgAction extends Action {
         String oggetto= request.getParameter("oggetto");
         String testo= request.getParameter("testo");
 
+        if(emaildest.trim().length()<1 || oggetto.trim().length()<1 || testo.trim().length()<1)
+            return mapping.findForward("failmsg");
+
         HttpSession session = request.getSession(true);
         UtenteConnessoBean u = (UtenteConnessoBean)session.getAttribute("userCon");
         String email = u.getEmail();
@@ -40,8 +43,6 @@ public class NuovoMsgAction extends Action {
             st.setString(3, testo);
             st.setDate(4, data);
             st.setString(5, email);
-            System.out.println("emaildest: "+emaildest+" oggetto: "+oggetto+" testo: "+testo+" data: "+String.valueOf(new CalendarData())+" email: "+email);
-
             st.executeUpdate();
 
             st.close();
