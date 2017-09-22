@@ -25,14 +25,17 @@ public class SellUtil {
 
     public String listout(String emailUtente, String abilitazioneUtente){
         String output="";
-        String query="SELECT nome , dosaggio, prezzo FROM farmaco WHERE abilitazione=?";
+        String query="";
+        if(abilitazioneUtente.equals("TF") || abilitazioneUtente.equals("DF"))
+            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco";
+        else
+            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco WHERE abilitazione='OB'";
         try {
             st = conn.prepareStatement(query);
-            st.setString(1, abilitazioneUtente);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td>");
+                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td><td><p>" + rs.getString("ricetta") + "</p></td>");
             }
 
             rs.close();
