@@ -23,15 +23,16 @@ public class SellUtil {
         }
     }
 
-    public String listout(String emailUtente, String abilitazioneUtente){
+    public String listout(int idfarmaciaUtente, String abilitazioneUtente){
         String output="";
-        String query="";
+        String query;
         if(abilitazioneUtente.equals("TF") || abilitazioneUtente.equals("DF"))
-            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco";
+            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE magazzino.idfarmacia=?";
         else
-            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco WHERE abilitazione='OB'";
+            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE abilitazione='OB' AND magazzino.idfarmacia=?";
         try {
             st = conn.prepareStatement(query);
+            st.setInt(1,idfarmaciaUtente);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
