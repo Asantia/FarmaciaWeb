@@ -27,16 +27,17 @@ public class SellUtil {
         String output="";
         String query;
         if(abilitazioneUtente.equals("TF") || abilitazioneUtente.equals("DF"))
-            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE magazzino.idfarmacia=?";
+            query="SELECT nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE magazzino.idfarmacia=?";
         else
-            query="SELECT nome , dosaggio, prezzo, ricetta FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE abilitazione='OB' AND magazzino.idfarmacia=?";
+            query="SELECT nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE abilitazione='OB' AND magazzino.idfarmacia=?";
         try {
             st = conn.prepareStatement(query);
             st.setInt(1,idfarmaciaUtente);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td><td><p>" + rs.getString("ricetta") + "</p></td>");
+                int disponibilita= rs.getInt("disponibilita");
+                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td><td><p>" + rs.getString("ricetta") + "</p></td><td><p><select name=\"quantita\">"+getDisponibilita(disponibilita)+"</select></p></td>");
             }
 
             rs.close();
@@ -49,4 +50,11 @@ public class SellUtil {
         return output;
     }
 
+    public String getDisponibilita(int disponibilita){
+        String listadispo="";
+        for(int i=1; i<=disponibilita; i++){
+            listadispo=listadispo.concat("<option value=\""+i+"\"></option>");
+        }
+        return listadispo;
+    }
 }
