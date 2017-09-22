@@ -18,7 +18,7 @@
         <a class="nav-link" href="Regione/homeRegione.jsp" > <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="#" >Messaggi</a>
+        <a class="nav-link active" href="messaggiRegione.jsp" >Messaggi</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="registraNuovaFarmacia.jsp">Registra una nuova farmacia</a>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="row m-1">
-    <table id="received"  class="tablesorter">
+    <table id="received"  class="table w-100 h-100 mx-4">
         <thead>
         <tr><th>Inviato da: </th><th>Oggetto</th><th>Testo</th><th>Data</th></tr>
         </thead>

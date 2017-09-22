@@ -18,7 +18,7 @@
         <a href="Dipendenti/homeDipendenti.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link active">Messaggi</a>
+        <a href="messaggiDipendenti.jsp" class="nav-link active">Messaggi</a>
     </li>
     <li class="nav-item">
         <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="row m-1">
-    <table id="sent"  class="tablesorter">
+    <table id="sent"  class="table w-100 h-100 mx-4">
         <thead>
         <tr><th>Inviato a: </th><th>Oggetto</th><th>Testo</th><th>Data</th></tr>
         </thead>
