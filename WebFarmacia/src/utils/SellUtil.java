@@ -52,8 +52,8 @@ public class SellUtil {
 
     public String getDisponibilita(int disponibilita){
         String listadispo="";
-        for(int i=1; i<=disponibilita; i++){
-            listadispo=listadispo.concat("<option value=\""+i+"\"></option>");
+        for(int i=0; i<=disponibilita; i++){
+            listadispo=listadispo.concat("<option value=\""+i+"\">"+i+"</option>");
         }
         return listadispo;
     }

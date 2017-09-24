@@ -43,7 +43,7 @@ public class CercaPazienteAction extends Action {
                 pazConn.setNome(nome);
                 pazConn.setCognome(cognome);
                 pazConn.setDatanascita(datanascita);
-                return mapping.findForward("pazientiTrovati");
+                return mapping.findForward("pazientiTrovatiTitolare");
             }
 
         }

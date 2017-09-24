@@ -27,18 +27,14 @@ public class CercaPazienteUtil extends Action{
     }
 
     public String cerca(String cfForm, String nomeForm, String cognomeForm, Date datanascitaForm){
-        String cf = cfForm;
-        String nome = nomeForm;
-        String cognome = cognomeForm;
-        Date datanascita = datanascitaForm;
         String output="";
         String query="SELECT cf , nome, cognome, datanascita FROM paziente WHERE cf=? AND nome=? AND cognome=? AND datanascita=?";
         try {
             st = conn.prepareStatement(query);
-            st.setString(1, cf);
-            st.setString(2, nome);
-            st.setString(3, cognome);
-            st.setDate(4, datanascita);
+            st.setString(1, cfForm);
+            st.setString(2, nomeForm);
+            st.setString(3, cognomeForm);
+            st.setDate(4, datanascitaForm);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {

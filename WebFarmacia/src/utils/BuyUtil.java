@@ -31,7 +31,7 @@ public class BuyUtil {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td><td><p>" + rs.getString("ricetta")+"</p></td><td><p><input class=\"form-control\" placeholder=\"0\">"+"</p></td>");
+                output = output.concat("<tr><td><p name=\"nome\">" + rs.getString("nome") + "</p></td><td><p name=\"dosaggio\">" + rs.getString("dosaggio") + "</p></td><td><p name=\"prezzo\">" + rs.getString("prezzo") + "</p></td><td><p name=\"ricetta\">" + rs.getString("ricetta")+"</p></td><td><p><input name=\"quantita\" class=\"form-control\" placeholder=\"0\">"+"</p></td>");
             }
 
             rs.close();
