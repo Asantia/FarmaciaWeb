@@ -20,10 +20,12 @@ public class BuyAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception {
         String nome= request.getParameter("nome");
-        String dosaggio= request.getParameter("dosaggio");
+        int dosaggio= Integer.parseInt(request.getParameter("dosaggio"));
         String ricetta= request.getParameter("ricetta");
         int quantita= Integer.parseInt(request.getParameter("quantita"));
-        ArrayList<Integer> listaid = null;
+        int idfarmaco = -1;
+
+        System.out.print("nome: "+nome+" dosaggio: "+dosaggio+" ricetta: "+ricetta+" quantita: "+ quantita);
 
         HttpSession session = request.getSession(true);
         UtenteConnessoBean u = (UtenteConnessoBean)session.getAttribute("userCon");
@@ -40,12 +42,12 @@ public class BuyAction extends Action {
             String query="SELECT idfarmaco FROM farmaco WHERE nome=? AND dosaggio=?" ;
             st = conn.prepareStatement(query);
             st.setString(1, nome);
-            st.setString(2, dosaggio);
+            st.setInt(2, dosaggio);
             rs=st.executeQuery();
 
             while (rs.next()) {
                 if(quantita>0)
-                    listaid.add(rs.getInt("idfarmaco"));
+                    idfarmaco = rs.getInt("idfarmaco");
             }
             rs.close();
             st.close();
@@ -61,22 +63,43 @@ public class BuyAction extends Action {
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
-            int i=0;
-            while (i<listaid.size()) {
-                String query = "INSERT INTO magazzino (idfarmaco, idfarmacia, disponibilita) VALUES (?,?,?) ";
-                st = conn.prepareStatement(query);
-                st.setInt(1, listaid.get(i));
+
+            String query="SELECT idfarmaco FROM magazzino WHERE idfarmaco=? AND idfarmacia=?" ;
+            st = conn.prepareStatement(query);
+            st.setInt(1, idfarmaco);
+            st.setInt(2, idfarmacia);
+            rs=st.executeQuery();
+
+            if(rs==null) {
+                String query2 = "INSERT INTO magazzino (idfarmaco, idfarmacia, disponibilita) VALUES (?,?,?) ";
+                st = conn.prepareStatement(query2);
+                st.setInt(1, idfarmaco);
                 st.setInt(2, idfarmacia);
                 st.setInt(3, quantita);
                 st.executeUpdate();
+
+                st.close();
+                conn.close();
+            }
+            else{
+                String query2 = "UPDATE magazzino SET disponibilita=disponibilita+? WHERE idfarmaco=? AND idfarmacia=?";
+                st = conn.prepareStatement(query2);
+                st.setInt(1, quantita);
+                st.setInt(2, idfarmaco);
+                st.setInt(3, idfarmacia);
+                st.executeUpdate();
+
+                st.close();
+                conn.close();
             }
             st.close();
             conn.close();
         }
         catch (Exception e) {
             System.out.println("Impossibile inserire il nuovo acquisto nel DB: "+ e.getMessage() );
+            return mapping.findForward("failTitolare");
         }
 
-        return mapping.findForward("homeTitolare");
+        return mapping.findForward("magazzino");
     }
 }

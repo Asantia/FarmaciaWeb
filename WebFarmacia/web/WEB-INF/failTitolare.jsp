@@ -13,6 +13,5 @@
 <body>
 <h1>Inserimento fallito.</h1>
 <h1><a href="../Titolare/homeTitolare.jsp">Torna alla Home</a></h1>
-<h1><a href="../registraNuovoDipendente.jsp">Riprova</a></h1>
 </body>
 </html>

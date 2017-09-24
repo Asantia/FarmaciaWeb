@@ -31,7 +31,13 @@ public class BuyUtil {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                output = output.concat("<tr><td><p name=\"nome\">" + rs.getString("nome") + "</p></td><td><p name=\"dosaggio\">" + rs.getString("dosaggio") + "</p></td><td><p name=\"prezzo\">" + rs.getString("prezzo") + "</p></td><td><p name=\"ricetta\">" + rs.getString("ricetta")+"</p></td><td><p><input name=\"quantita\" class=\"form-control\" placeholder=\"0\">"+"</p></td>");
+                output = output.concat("<form class=\"w-100 h-100 m-3 p-3\" style=\"\" method=\"post\" action=\"buy.do\">\n" +
+                        "<tr><td><p><input type=\"text\" readonly=\"readonly\" name=\"nome\" value=\"" + rs.getString("nome") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"dosaggio\" value=\"" + rs.getString("dosaggio") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"prezzo\" value=\"" + rs.getString("prezzo") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"ricetta\" value=\"" + rs.getString("ricetta")+
+                        "\"/></p></td><td><p><input name=\"quantita\" type=\"int\" class=\"form-control\" placeholder=\"0\">"+
+                        "</p></td><td><p><button type=\"submit\" class=\"btn btn-primary mx-3 w-100\">Compra</button></p></td></form>");
             }
 
             rs.close();
