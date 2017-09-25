@@ -37,7 +37,12 @@ public class SellUtil {
 
             while (rs.next()) {
                 int disponibilita= rs.getInt("disponibilita");
-                output = output.concat("<tr><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("prezzo") + "</p></td><td><p>" + rs.getString("ricetta") + "</p></td><td><p><select name=\"quantita\">"+getDisponibilita(disponibilita)+"</select></p></td>");
+                output = output.concat("<form class=\"w-100 h-100 m-3 p-3\" style=\"\" method=\"post\" action=\"fillcarrello.do\">\n" +
+                        "<tr><td><p><input type=\"text\" readonly=\"readonly\" name=\"nome\" value=\"" + rs.getString("nome") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"dosaggio\" value=\"" + rs.getString("dosaggio") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"prezzo\" value=\"" + rs.getString("prezzo") +
+                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"ricetta\" value=\"" + rs.getString("ricetta")+
+                        "\"/></p></td><td><p><select name=\"quantita\">"+ getDisponibilita(disponibilita)+"</select></p></td><td><p><button type=\"submit\" class=\"btn btn-primary mx-3 w-100\">Vendi</button></p></td></form>");
             }
 
             rs.close();
