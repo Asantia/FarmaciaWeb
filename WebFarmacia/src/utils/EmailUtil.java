@@ -26,7 +26,7 @@ public class EmailUtil {
 
     public String sent(String emailUtente){
         String output="";
-        String query="SELECT emaildest , oggetto, testo, data FROM messaggio WHERE email=?";
+        String query="SELECT emaildest , oggetto, testo, data FROM messaggio WHERE email=? ORDER BY data";
         try {
             st = conn.prepareStatement(query);
             st.setString(1, emailUtente);

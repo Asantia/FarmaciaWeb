@@ -25,8 +25,6 @@ public class BuyAction extends Action {
         int quantita= Integer.parseInt(request.getParameter("quantita"));
         int idfarmaco = -1;
 
-        System.out.print("nome: "+nome+" dosaggio: "+dosaggio+" ricetta: "+ricetta+" quantita: "+ quantita);
-
         HttpSession session = request.getSession(true);
         UtenteConnessoBean u = (UtenteConnessoBean)session.getAttribute("userCon");
         int idfarmacia = u.getIdFarmacia();
@@ -70,27 +68,34 @@ public class BuyAction extends Action {
             st.setInt(2, idfarmacia);
             rs=st.executeQuery();
 
-            if(rs==null) {
-                String query2 = "INSERT INTO magazzino (idfarmaco, idfarmacia, disponibilita) VALUES (?,?,?) ";
-                st = conn.prepareStatement(query2);
-                st.setInt(1, idfarmaco);
-                st.setInt(2, idfarmacia);
-                st.setInt(3, quantita);
-                st.executeUpdate();
+            if(!rs.next()) {
+                try {
+                    String query2 = "INSERT INTO magazzino (idfarmaco, idfarmacia, disponibilita) VALUES (?,?,?) ";
+                    st = conn.prepareStatement(query2);
+                    st.setInt(1, idfarmaco);
+                    st.setInt(2, idfarmacia);
+                    st.setInt(3, quantita);
+                    st.executeUpdate();
+                }
+                catch (Exception e){
+                    System.out.println("Impossibile inserire il nuovo prodotto nel DB: "+ e.getMessage() );
+                    return mapping.findForward("failTitolare");
+                }
 
-                st.close();
-                conn.close();
             }
             else{
-                String query2 = "UPDATE magazzino SET disponibilita=disponibilita+? WHERE idfarmaco=? AND idfarmacia=?";
-                st = conn.prepareStatement(query2);
-                st.setInt(1, quantita);
-                st.setInt(2, idfarmaco);
-                st.setInt(3, idfarmacia);
-                st.executeUpdate();
-
-                st.close();
-                conn.close();
+                try {
+                    String query2 = "UPDATE magazzino SET disponibilita=disponibilita+? WHERE idfarmaco=? AND idfarmacia=?";
+                    st = conn.prepareStatement(query2);
+                    st.setInt(1, quantita);
+                    st.setInt(2, idfarmaco);
+                    st.setInt(3, idfarmacia);
+                    st.executeUpdate();
+                }
+                catch (Exception e){
+                    System.out.println("Impossibile aggiornare il prodotto nel DB: "+ e.getMessage() );
+                    return mapping.findForward("failTitolare");
+                }
             }
             st.close();
             conn.close();
