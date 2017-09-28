@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: csantia
-  Date: 9/24/2017
-  Time: 3:46 PM
+  Date: 9/28/2017
+  Time: 4:42 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>inseriscipaziente</title>
+    <title>inserisciricetta</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
@@ -42,7 +42,7 @@
         <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
     <%
-        }else if(userCon.getAbilitazione().equals("DF")){
+    }else if(userCon.getAbilitazione().equals("DF")){
     %>
     <li class="nav-item">
         <a href="Dipendenti/homeDipendenti.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
@@ -60,7 +60,8 @@
         <a class="nav-link" href="login.jsp">Logout</a>
     </li>
 </ul>
-<form class="w-50 h-50 m-3 p-3" style="" action="nuovopaziente.do" method="post">
+<form class="w-50 h-50 m-3 p-3" style="" action="nuovaricetta.do" method="post">
+    Ricettaaaaa
     <div class="form-group"> <label>Codice Fiscale</label>
         <input class="form-control" name="cf" placeholder="Enter cf" type="text"> </div>
     <div class="form-group"><label>Nome</label>

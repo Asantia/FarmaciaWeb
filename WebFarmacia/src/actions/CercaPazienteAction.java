@@ -17,9 +17,14 @@ public class CercaPazienteAction extends Action {
         String nome =request.getParameter("nome");
         String cognome =request.getParameter("cognome");
         Date datanascita = Date.valueOf(request.getParameter("datanascita"));
-
+        System.out.print("CF act 1: "+cf);
         Connection conn = null;
         PreparedStatement st = null;
+
+        if(cf.trim().length()!=16)
+            return mapping.findForward("failTitolare");
+        if(nome.trim().length()<0 || cognome.trim().length()<0 || datanascita.toString().length()<0)
+            return mapping.findForward("failTitolare");
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -33,7 +38,7 @@ public class CercaPazienteAction extends Action {
             st.setDate(4 ,datanascita);
             ResultSet rs = st.executeQuery();
 
-            if(rs!=null) {
+            while(rs.next()) {
                 rs.close();
                 st.close();
                 conn.close();
@@ -43,13 +48,14 @@ public class CercaPazienteAction extends Action {
                 pazConn.setNome(nome);
                 pazConn.setCognome(cognome);
                 pazConn.setDatanascita(datanascita);
+                System.out.print("CF act: "+pazConn.getCf());
                 return mapping.findForward("pazientiTrovatiTitolare");
             }
 
         }
         catch (Exception e) {
             System.out.println("Errore di connessione al DB "+ e.getMessage() );
-
+            return mapping.findForward("failTitolare");
         }
 
         return mapping.findForward("inserisciPaziente");

@@ -29,7 +29,7 @@
         <a href="magazzino.jsp" class="nav-link">Magazzino</a>
     </li>
     <li class="nav-item">
-        <a href="registraNuovoDipendente.jsp" class="nav-item">Registra un nuovo dipendente</a>
+        <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="login.jsp">Logout</a>

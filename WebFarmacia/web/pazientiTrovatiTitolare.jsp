@@ -9,7 +9,7 @@
 
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
-<jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
+<jsp:useBean id="pazConn" scope="session" class="beans.PazienteCercatoBean"/>
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF"))){
 %>
@@ -31,7 +31,7 @@
         <a href="magazzino.jsp" class="nav-link">Magazzino</a>
     </li>
     <li class="nav-item">
-        <a href="registraNuovoDipendente.jsp" class="nav-item">Registra un nuovo dipendente</a>
+        <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="login.jsp">Logout</a>
@@ -43,8 +43,10 @@
                     <tr><th>Codice Fiscale</th><th>Nome</th><th>Cognome</th><th>Data di Nascita</th></tr>
                     </thead>
                     <tbody>
-                    <%CercaPazienteUtil pazientetrovato = new CercaPazienteUtil(); %>
-                    <%=pazientetrovato.cerca(pazCon.getCf(), pazCon.getNome(), pazCon.getCognome(), pazCon.getDatanascita())%>
+                    <%CercaPazienteUtil pazientetrovato = new CercaPazienteUtil();
+                    System.out.print("CF: "+pazConn.getCf());
+                    %>
+                    <%=pazientetrovato.cerca(pazConn.getCf(), pazConn.getNome(), pazConn.getCognome(), pazConn.getDatanascita())%>
                     </tbody>
                 </table>
             </div>
