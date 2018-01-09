@@ -26,10 +26,9 @@ public class CercaPazienteUtil extends Action{
         }
     }
 
-    public String cerca(String cfForm, String nomeForm, String cognomeForm, Date datanascitaForm){
+    public String listout(String cfForm, String nomeForm, String cognomeForm, Date datanascitaForm){
         String output="";
         String query="SELECT cf , nome, cognome, datanascita FROM paziente WHERE cf=? AND nome=? AND cognome=? AND datanascita=?";
-        System.out.print("CF: "+cfForm);
         try {
             st = conn.prepareStatement(query);
             st.setString(1, cfForm);

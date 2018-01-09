@@ -17,14 +17,19 @@ public class CercaPazienteAction extends Action {
         String nome =request.getParameter("nome");
         String cognome =request.getParameter("cognome");
         Date datanascita = Date.valueOf(request.getParameter("datanascita"));
-        System.out.print("CF act 1: "+cf);
         Connection conn = null;
         PreparedStatement st = null;
 
         if(cf.trim().length()!=16)
             return mapping.findForward("failTitolare");
-        if(nome.trim().length()<0 || cognome.trim().length()<0 || datanascita.toString().length()<0)
+        if(nome.trim().length()<1 || cognome.trim().length()<1 || datanascita.toString().length()<1)
             return mapping.findForward("failTitolare");
+
+        PazienteCercatoBean pazConn = new PazienteCercatoBean();
+        pazConn.setCf(cf);
+        pazConn.setNome(nome);
+        pazConn.setCognome(cognome);
+        pazConn.setDatanascita(datanascita);
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -43,12 +48,6 @@ public class CercaPazienteAction extends Action {
                 st.close();
                 conn.close();
 
-                PazienteCercatoBean pazConn = new PazienteCercatoBean();
-                pazConn.setCf(cf);
-                pazConn.setNome(nome);
-                pazConn.setCognome(cognome);
-                pazConn.setDatanascita(datanascita);
-                System.out.print("CF act: "+pazConn.getCf());
                 return mapping.findForward("pazientiTrovatiTitolare");
             }
 

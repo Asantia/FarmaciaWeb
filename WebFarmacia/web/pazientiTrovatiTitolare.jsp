@@ -9,12 +9,13 @@
 
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
-<jsp:useBean id="pazConn" scope="session" class="beans.PazienteCercatoBean"/>
 <%
-    if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF"))){
+    if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
 %>
 <ul class="nav nav-pills" style="">
-
+    <%
+        if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF"))){
+    %>
     <li class="nav-item">
         <a href="Titolare/homeTitolare.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
     </li>
@@ -33,20 +34,31 @@
     <li class="nav-item">
         <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
+    <%
+    }else if(userCon.getAbilitazione().equals("DF")){
+    %>
+    <li class="nav-item">
+        <a href="Dipendenti/homeDipendenti.jsp" class="nav-link"> <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
+    </li>
+    <li class="nav-item">
+        <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
+    </li>
+    <%
+        }
+    %>
     <li class="nav-item">
         <a class="nav-link" href="login.jsp">Logout</a>
     </li>
     </ul>
             <div class="row m-1">
-                <table id="sent"  class="table w-100 h-100 mx-4">
+                <table id="trovati"  class="table w-100 h-100 mx-4">
                     <thead>
                     <tr><th>Codice Fiscale</th><th>Nome</th><th>Cognome</th><th>Data di Nascita</th></tr>
                     </thead>
                     <tbody>
-                    <%CercaPazienteUtil pazientetrovato = new CercaPazienteUtil();
-                    System.out.print("CF: "+pazConn.getCf());
-                    %>
-                    <%=pazientetrovato.cerca(pazConn.getCf(), pazConn.getNome(), pazConn.getCognome(), pazConn.getDatanascita())%>
                     </tbody>
                 </table>
             </div>

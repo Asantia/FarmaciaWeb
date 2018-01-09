@@ -33,28 +33,28 @@ public class FillCarrelloAction extends Action {
         PreparedStatement st = null;
         ResultSet rs=null;
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
+        if(quantita>0) {
+            try {
+                Class.forName("org.postgresql.Driver");
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
 
-            String query="SELECT idfarmaco, ricetta FROM farmaco WHERE nome=? AND dosaggio=?" ;
-            st = conn.prepareStatement(query);
-            st.setString(1, nome);
-            st.setInt(2, dosaggio);
-            rs=st.executeQuery();
+                String query = "SELECT idfarmaco, ricetta FROM farmaco WHERE nome=? AND dosaggio=?";
+                st = conn.prepareStatement(query);
+                st.setString(1, nome);
+                st.setInt(2, dosaggio);
+                rs = st.executeQuery();
 
-            while (rs.next()) {
-
+                while (rs.next()) {
+                    System.out.print("id farmaco: "+idfarmaco+" ");
+                }
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (Exception e) {
+                System.out.println("Errore di connessione a DB: " + e.getMessage());
+                return mapping.findForward("failTitolare");
             }
-            rs.close();
-            st.close();
-            conn.close();
         }
-        catch (Exception e) {
-            System.out.println("Errore di connessione a DB: "+ e.getMessage() );
-            return mapping.findForward("failTitolare");
-        }
-
         return mapping.findForward("vendixTitolare");
     }
 }

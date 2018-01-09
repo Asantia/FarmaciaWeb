@@ -27,9 +27,9 @@ public class SellUtil {
         String output="";
         String query;
         if(abilitazioneUtente.equals("TF") || abilitazioneUtente.equals("DF"))
-            query="SELECT nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE magazzino.idfarmacia=?";
+            query="SELECT farmaco.idfarmaco, nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE magazzino.idfarmacia=?";
         else
-            query="SELECT nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE abilitazione='OB' AND magazzino.idfarmacia=?";
+            query="SELECT farmaco.idfarmaco, nome , dosaggio, prezzo, ricetta, disponibilita FROM farmaco JOIN magazzino ON farmaco.idfarmaco=magazzino.idfarmaco WHERE abilitazione='OB' AND magazzino.idfarmacia=?";
         try {
             st = conn.prepareStatement(query);
             st.setInt(1,idfarmaciaUtente);
@@ -37,12 +37,14 @@ public class SellUtil {
 
             while (rs.next()) {
                 int disponibilita= rs.getInt("disponibilita");
-                output = output.concat("<form class=\"w-100 h-100 m-3 p-3\" style=\"\" method=\"post\" action=\"fillcarrello.do\">\n" +
-                        "<tr><td><p><input type=\"text\" readonly=\"readonly\" name=\"nome\" value=\"" + rs.getString("nome") +
-                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"dosaggio\" value=\"" + rs.getString("dosaggio") +
-                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"prezzo\" value=\"" + rs.getString("prezzo") +
-                        "\"/></p></td><td><p><input type=\"text\" readonly=\"readonly\" name=\"ricetta\" value=\"" + rs.getString("ricetta")+
-                        "\"/></p></td><td><p><select name=\"quantita\">"+ getDisponibilita(disponibilita)+"</select></p></td><td><p><button type=\"submit\" class=\"btn btn-primary mx-3 w-100\">Vendi</button></p></td></form>");
+                output = output.concat("<tr><td>" + rs.getString("idfarmaco") +
+                        "</td><td>" + rs.getString("nome") +
+                        "</td><td>" + rs.getString("dosaggio") +
+                        "</td><td>" + rs.getString("prezzo") +
+                        "</td><td>" + rs.getString("ricetta")+
+                        "</td><td>" + rs.getString("disponibilita")+
+                        "</td><td><input id=\"quant\" type=\"text\" name=\"quantita\" placeholder=\"0\">" +
+                        "</td><td><input type=\"button\" value=\"Aggiungi\" onclick=\"prova(this)\"/></td></tr>");
             }
 
             rs.close();
