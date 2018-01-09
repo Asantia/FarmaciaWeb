@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>faildipendenti</title>
+    <title>faildipendenti1</title>
 </head>
 <body>
 <h1>Inserimento fallito.</h1>
