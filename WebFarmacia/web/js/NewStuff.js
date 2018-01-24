@@ -103,27 +103,26 @@ $(document).ready(function () {
         var rowCount = $('#lm').find('tr').length - 1;
         var idprod = [], q = [];
         for (var i = 0; i < rowCount; i++) {
-            var txt = $("input[name=ordina" + i + "]");
+            var txt = $("input[id=quant" + i + "]");
             if (parseInt(txt.val()) > 0 && $.isNumeric(txt.val())) {
                 var $tr = $(txt).parents("tr");
                 idprod.push($tr.find("td").eq(0).html().replace(/[^0-9]/g, '')); // idprodotto
                 q.push(txt.val());
             }
         }
+        alert('idprod = '+idprod+'\nq = '+q);
 
         $.ajaxSettings.traditional = true;
         $.ajax({
-            url: "../src/actions/sell.do",
+            url: "../sell.do",
             type: 'POST',
             data: $.param({prodotti: idprod, quantita: q}, true),
             success: function (response) {
-                if (response ==="failTitolare")
-                    window.location.href = "../WEB-INF/failTitolare.jsp";
-                if (response === "cercaPazienteTitolare")
-                    window.location.href = "../cercaPazienteTitolare.jsp";
+                alert('Success');
+                window.location.href = "/"+response+".jsp";
             },
-            error: function (e) {
-                alert('Error: ' + e);
+            error: function ( jqxhr, textStatus, errorThrown ) {
+                alert('Error: textStatus = ' + textStatus + '\nerrorThrown = ' + errorThrown);
             }
         });
         return true;

@@ -21,7 +21,7 @@
         <a href="messaggiDipendenti.jsp" class="nav-link active">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
+        <a href="vendixTitolare.jsp" class="nav-link">Vendi</a>
     </li>
     <li class="nav-item">
         <a href="login.jsp" class="nav-link">Logout</a>

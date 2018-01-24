@@ -1,4 +1,5 @@
 <%@ page import="utils.CercaPazienteUtil" %>
+<%@ page import="beans.PazienteCercatoBean" %>
 <html>
 
 <head>
@@ -9,6 +10,8 @@
 
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
+<jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
+
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
 %>
@@ -44,7 +47,7 @@
         <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
+        <a href="venditafinita.jsp" class="nav-link">Vendi</a>
     </li>
     <%
         }
@@ -53,18 +56,9 @@
         <a class="nav-link" href="login.jsp">Logout</a>
     </li>
     </ul>
-            <div class="row m-1">
-                <table id="trovati"  class="table w-100 h-100 mx-4">
-                    <thead>
-                    <tr><th>Codice Fiscale</th><th>Nome</th><th>Cognome</th><th>Data di Nascita</th></tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-
+            <p>Paziente gia' inserito</p>
             <div class="col-md-4">
-                <a class="btn btn-primary btn-lg btn-block" href="#">Procedi alla vendita</a>
+                <a class="btn btn-primary btn-lg btn-block" href="venditafinita.jsp">Procedi alla vendita</a>
             </div>
 
         <%

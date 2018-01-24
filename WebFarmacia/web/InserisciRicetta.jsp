@@ -51,7 +51,7 @@
         <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
+        <a href="venditafinita.jsp" class="nav-link">Vendi</a>
     </li>
     <%
         }

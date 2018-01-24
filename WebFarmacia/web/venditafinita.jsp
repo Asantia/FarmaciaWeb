@@ -25,7 +25,7 @@
         <a href="messaggiTitolare.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link active">Vendi</a>
+        <a href="vendixTitolare.jsp" class="nav-link active">Vendi</a>
     </li>
     <li class="nav-item">
         <a href="compra.jsp" class="nav-link">Compra</a>
@@ -36,7 +36,7 @@
     <li class="nav-item">
         <a href="registraNuovoDipendente.jsp" class="nav-link">Registra un nuovo dipendente</a>
     </li>
-    <%
+        <%
         }
         else if(userCon.getConnesso() && (userCon.getAbilitazione().equals("DF") || userCon.getAbilitazione().equals("OB"))){
     %>
@@ -48,35 +48,41 @@
             <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link active">Vendi</a>
+            <a href="vendixTitolare.jsp" class="nav-link active">Vendi</a>
         </li>
-    <%
-        }
-    %>
-    <li class="nav-item">
-        <a class="nav-link" href="login.jsp">Logout</a>
-    </li>
-</ul>
+        <%
+            }
+        %>
+        <li class="nav-item">
+            <a class="nav-link" href="login.jsp">Logout</a>
+        </li>
+    </ul>
 
-        <table id="lm">
-            <thead>
-            <tr><th>Id Prodotto</th><th>Nome</th><th>Dosaggio</th><th>Prezzo</th><th>Ricetta</th><th>Disponibilita'</th><th>Quantita'</th></tr>
-            </thead>
-            <tbody>
-            <% SellUtil vendita = new SellUtil();%>
-            <%=vendita.listout(userCon.getIdFarmacia(), userCon.getAbilitazione())%>
-            </tbody>
-        </table>
-            <input type="button" id="vendi" class="vendi" value="vendi">
+    <p>Riepilogo Carrello</p>
+    <table id="lm">
+        <thead>
+        <tr><th>Id Prodotto</th><th>Nome</th><th>Dosaggio</th><th>Prezzo</th><th>Ricetta</th><th>Quantita'</th></tr>
+        </thead>
+        <tbody>
+        <% SellUtil carrello2 = new SellUtil();%>
+        <%=carrello2.riepilogoCarrello(carrello)%>
+        </tbody>
+    </table>
+    <p>Prezzo finale:
+        <% SellUtil carrello1 = new SellUtil();%>
+        <%=carrello1.printPrezzo(carrello) %>
+    </p>
+    // e qua parte la action che mette i record della vendita nel db
+    <input type="button" id="terminavendita" class="terminavendita" value="Termina Vendita">
 
-<%
+        <%
     if(!userCon.getConnesso() || (!userCon.getAbilitazione().equals("TF") && !userCon.getAbilitazione().equals("DF") && !userCon.getAbilitazione().equals("OB"))){
 %>
-<div class="container">
-    <h1>Email o password errata</h1>
-    <h2> <a href="login.jsp">Login</a></h2>
-</div>
-<%
+    <div class="container">
+        <h1>Email o password errata</h1>
+        <h2> <a href="login.jsp">Login</a></h2>
+    </div>
+        <%
     }
 %>
 </body>

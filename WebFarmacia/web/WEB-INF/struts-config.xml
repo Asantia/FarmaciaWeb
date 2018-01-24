@@ -5,6 +5,9 @@
         "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
+    <global-forwards>
+        <forward name="success" path="WEB-INF/successTitolare.jsp"></forward>
+    </global-forwards>
 
     <action-mappings>
 
@@ -54,8 +57,10 @@
             <forward name="failTitolare" path="/WEB-INF/failTitolare.jsp"/>
         </action>
 
-        <action path="/sell" type="actions.SellAction"/>
-
+        <action path="/sell" type="actions.SellAction">
+            <forward name="cercaPazienteTitolare" path="/cercaPazienteTitolare.jsp"/>
+            <forward name="failTitolare" path="/WEB-INF/failTitolare.jsp"/>
+        </action>
 
     </action-mappings>
 </struts-config>

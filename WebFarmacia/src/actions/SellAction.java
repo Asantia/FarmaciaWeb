@@ -7,10 +7,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.Arrays;
 
 import beans.CarrelloBean;
 /**
@@ -19,6 +17,50 @@ import beans.CarrelloBean;
 public class SellAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception {
+
+        int[] a = Arrays.stream(request.getParameterValues("prodotti")).mapToInt(Integer::parseInt).toArray();
+        int[] b = Arrays.stream(request.getParameterValues("quantita")).mapToInt(Integer::parseInt).toArray();
+
+        CarrelloBean carrello = new CarrelloBean();
+        carrello.setListaid(a);
+        carrello.setListaq(b);
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs=null;
+
+        for(int i=0; i<a.length; i++){
+            try {
+                Class.forName("org.postgresql.Driver");
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
+
+                String query="SELECT prezzo, ricetta FROM farmaco WHERE idfarmaco=?" ;
+                st = conn.prepareStatement(query);
+                st.setInt(1, a[i]);
+                rs=st.executeQuery();
+
+                while (rs.next()) {
+                    carrello.setPrezzo(carrello.getPrezzo()+rs.getInt("prezzo")*b[i]);
+                    carrello.setRicetta(carrello.isRicetta()||rs.getBoolean("ricetta"));
+                }
+                rs.close();
+                st.close();
+                conn.close();
+            }
+            catch (Exception e) {
+                System.out.println("Errore di connessione a DB: "+ e.getMessage() );
+                return mapping.findForward("failTitolare");
+            }
+        }
+        request.getSession().setAttribute("carrello", carrello);
+
+        if(carrello.isRicetta())
+            response.getOutputStream().print("cercaPazienteTitolare");
+        else
+            response.getOutputStream().print("venditafinita");
+        return null;
+        //return mapping.findForward("cercaPazienteTitolare");
+        /*
         String nome = request.getParameter("nome");
         int dosaggio = Integer.parseInt(request.getParameter("dosaggio"));
         boolean ricetta = Boolean.parseBoolean(request.getParameter("ricetta"));
@@ -56,5 +98,6 @@ public class SellAction extends Action {
         }
 
         return mapping.findForward("cercaPazienteTitolare");
+        */
     }
 }

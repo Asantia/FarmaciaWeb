@@ -1,5 +1,7 @@
 package utils;
 
+import beans.CarrelloBean;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,6 +36,7 @@ public class SellUtil {
             st = conn.prepareStatement(query);
             st.setInt(1,idfarmaciaUtente);
             ResultSet rs = st.executeQuery();
+            int i=0;
 
             while (rs.next()) {
                 int disponibilita= rs.getInt("disponibilita");
@@ -43,8 +46,9 @@ public class SellUtil {
                         "</td><td>" + rs.getString("prezzo") +
                         "</td><td>" + rs.getString("ricetta")+
                         "</td><td>" + rs.getString("disponibilita")+
-                        "</td><td><input id=\"quant\" type=\"text\" name=\"quantita\" placeholder=\"0\">" +
-                        "</td><td><input type=\"button\" value=\"Aggiungi\" onclick=\"prova(this)\"/></td></tr>");
+                        "</td><td><input id=\"quant" +i+"\" type=\"text\" name=\"quantita\" placeholder=\"0\">" +
+                        "</td>\n");
+                i++;
             }
 
             rs.close();
@@ -63,5 +67,42 @@ public class SellUtil {
             listadispo=listadispo.concat("<option value=\""+i+"\">"+i+"</option>");
         }
         return listadispo;
+    }
+
+    public String printPrezzo(CarrelloBean carrello){
+        return " "+carrello.getPrezzo();
+    }
+
+    public String riepilogoCarrello(CarrelloBean carrello){
+        String output="";
+        String query;
+        for(int i=0; i<carrello.getListaid().length; i++) {
+            try {
+                Class.forName("org.postgresql.Driver");
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "$Ultraheroes1");
+
+                query = "SELECT idfarmaco,nome, dosaggio, prezzo, ricetta FROM farmaco WHERE idfarmaco=?";
+                st = conn.prepareStatement(query);
+                st.setInt(1, carrello.getListaid()[i]);
+                ResultSet rs = st.executeQuery();
+
+                while (rs.next()) {
+                    output = output.concat("<tr><td>" + rs.getString("idfarmaco") +
+                            "</td><td>" + rs.getString("nome") +
+                            "</td><td>" + rs.getString("dosaggio") +
+                            "</td><td>" + rs.getString("prezzo") +
+                            "</td><td>" + rs.getString("ricetta") +
+                            "</td><td>" + carrello.getListaq()[i] +
+                            "</td>\n");
+                }
+
+                rs.close();
+                st.close();
+                conn.close();
+            } catch (Exception e) {
+                System.out.println("Errore di connessione al DB" + e.getMessage());
+            }
+        }
+            return output;
     }
 }

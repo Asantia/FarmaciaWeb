@@ -8,6 +8,7 @@
 
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
+<jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
 %>
@@ -43,7 +44,7 @@
         <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="vendixDipendenti.jsp" class="nav-link">Vendi</a>
+        <a href="venditafinita.jsp" class="nav-link">Vendi</a>
     </li>
     <%
         }
