@@ -16,6 +16,7 @@
 </head>
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
+<jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
 %>
@@ -61,12 +62,6 @@
     </li>
 </ul>
 <form class="w-50 h-50 m-3 p-3" style="" action="nuovopaziente.do" method="post">
-    <div class="form-group"> <label>Codice Fiscale</label>
-        <input class="form-control" name="cf" placeholder="Enter cf" type="text"> </div>
-    <div class="form-group"><label>Nome</label>
-        <input class="form-control" name="nome" placeholder="Nome" type="text"> </div>
-    <div class="form-group"><label>Cognome</label>
-        <input class="form-control" name="cognome" placeholder="Cognome" type="text"> </div>
     <div class="form-group"><label>Citta'</label>
         <input class="form-control" name="citta" placeholder="Citta'" type="text"> </div>
     <div class="form-group"><label>CAP</label>
@@ -77,8 +72,6 @@
         <input class="form-control" name="numero" placeholder="numero civico" type="text"> </div>
     <div class="form-group"><label>Telefono</label>
         <input class="form-control" name="telefono" placeholder="telefono" type="text"> </div>
-    <div class="form-group"><label>Data di Nascita</label>
-        <input class="form-control" name="datanascita" placeholder="AAAA-MM-GG" type="date"> </div>
     <button type="submit" class="btn btn-primary btn-block">Registra</button>
 </form>
 <%

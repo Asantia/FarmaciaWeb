@@ -1,3 +1,5 @@
+<%@page import="utils.StatsUtil" %>
+
 <html>
 
 <head>
@@ -32,23 +34,20 @@
     <div class="col-md-4">
         <div class="row p-1 text-justify">
             <div class="col-md-12">
-                <h1 class="">Top 10 farmaci piu' venduti questo mese</h1>
+                <h1 class="">Top 10 farmaci piu' venduti</h1>
             </div>
         </div>
-        <div class="row h-100 bg-inverse">
-            <div class="col-md-12">
-                <ol class="my-4">
-                    <li>One</li>
-                    <li>Two</li>
-                    <li>Three</li>
-                    <li>four</li>
-                    <li>five</li>
-                    <li>six</li>
-                    <li>seven</li>
-                    <li>eight</li>
-                    <li>nine</li>
-                    <li>ten</li>
-                </ol>
+        <div class="col-md-12">
+            <div class="row h-100 ">
+                <table id="bestselling"  class="table h-25 mx-4">
+                    <thead>
+                    <tr><th>Classifica</th><th>Nome Farmaco</th><th>Dosaggio</th><th>Quantita' Venduta</th></tr>
+                    </thead>
+                    <tbody>
+                    <%StatsUtil bestsellinglist = new StatsUtil(); %>
+                    <%=bestsellinglist.bestselling(userCon.getIdFarmacia())%>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
