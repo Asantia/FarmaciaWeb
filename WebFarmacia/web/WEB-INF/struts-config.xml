@@ -62,5 +62,19 @@
             <forward name="failTitolare" path="/WEB-INF/failTitolare.jsp"/>
         </action>
 
+        <action path="/nuovaricetta" type="actions.NuovaRicettaAction">
+            <forward name="venditafinita" path="/venditafinita.jsp"/>
+            <forward name="inserisciRicetta" path="/InserisciRicetta.jsp"/>
+            <forward name="failTitolare" path="/WEB-INF/failTitolare.jsp"/>
+            <forward name="failDipendeti" path="/WEB-INF/failDipendenti.jsp"/>
+        </action>
+
+        <action path="/endsell" type="actions.EndSellAction">
+            <forward name="homeTitolare" path="/Titolare/homeTitolare.jsp"/>
+            <forward name="homeDipendenti" path="/Dipendenti/homeDipendenti.jsp"/>
+            <forward name="failTitolare" path="/WEB-INF/failTitolare.jsp"/>
+            <forward name="failDipendeti" path="/WEB-INF/failDipendenti.jsp"/>
+        </action>
+
     </action-mappings>
 </struts-config>

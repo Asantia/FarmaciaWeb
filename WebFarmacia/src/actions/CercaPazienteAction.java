@@ -25,11 +25,14 @@ public class CercaPazienteAction extends Action {
         if(nome.trim().length()<1 || cognome.trim().length()<1 || datanascita.toString().length()<1)
             return mapping.findForward("failTitolare");
 
-        PazienteCercatoBean pazConn = new PazienteCercatoBean();
-        pazConn.setCf(cf);
-        pazConn.setNome(nome);
-        pazConn.setCognome(cognome);
-        pazConn.setDatanascita(datanascita);
+        PazienteCercatoBean pazCon = new PazienteCercatoBean();
+        pazCon.setCf(cf);
+        pazCon.setNome(nome);
+        pazCon.setCognome(cognome);
+        pazCon.setDatanascita(datanascita);
+
+        request.getSession().setAttribute("pazCon", pazCon);
+        System.out.print("pazcon cf: "+ pazCon.getCf());
 
         try {
             Class.forName("org.postgresql.Driver");

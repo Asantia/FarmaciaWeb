@@ -12,10 +12,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css">
+    <link rel="stylesheet" href="https://pingendo.github.io/templates/aquamarine/theme.css" type="text/css">
 </head>
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
+<jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
+<jsp:useBean id="carrelo" scope="session" class="beans.CarrelloBean"/>
+
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
 %>
@@ -60,27 +63,20 @@
         <a class="nav-link" href="login.jsp">Logout</a>
     </li>
 </ul>
+
 <form class="w-50 h-50 m-3 p-3" style="" action="nuovaricetta.do" method="post">
-    Ricettaaaaa
-    <div class="form-group"> <label>Codice Fiscale</label>
-        <input class="form-control" name="cf" placeholder="Enter cf" type="text"> </div>
-    <div class="form-group"><label>Nome</label>
-        <input class="form-control" name="nome" placeholder="Nome" type="text"> </div>
-    <div class="form-group"><label>Cognome</label>
-        <input class="form-control" name="cognome" placeholder="Cognome" type="text"> </div>
-    <div class="form-group"><label>Citta'</label>
-        <input class="form-control" name="citta" placeholder="Citta'" type="text"> </div>
-    <div class="form-group"><label>CAP</label>
-        <input class="form-control" name="cap" placeholder="cap" type="text"> </div>
-    <div class="form-group"><label>Via</label>
-        <input class="form-control" name="via" placeholder="via" type="text"> </div>
-    <div class="form-group"><label>Numero Civico</label>
-        <input class="form-control" name="numero" placeholder="numero civico" type="text"> </div>
-    <div class="form-group"><label>Telefono</label>
-        <input class="form-control" name="telefono" placeholder="telefono" type="text"> </div>
-    <div class="form-group"><label>Data di Nascita</label>
-        <input class="form-control" name="datanascita" placeholder="AAAA-MM-GG" type="date"> </div>
-    <button type="submit" class="btn btn-primary btn-block">Registra</button>
+    Ricetta
+    <div class="form-group"> <label>Nome Farmaco</label>
+        <input class="form-control" name="nomefarmaco" placeholder="Farmaco" type="text"> </div>
+    <div class="form-group"><label>Info</label>
+        <input class="form-control" name="info" placeholder="Info" type="text"> </div>
+    <div class="form-group"><label>Data</label>
+        <input class="form-control" name="dataricetta" placeholder="AAAA-MM-GG" type="date"> </div>
+    <div class="form-group"><label>Codice Medico</label>
+        <input class="form-control" name="codmed" placeholder="Codice Medico" type="text"> </div>
+    <div class="form-group"><label>Dosaggio</label>
+        <input class="form-control" name="dosaggio" placeholder="Dosaggio" type="text"> </div>
+    <button type="submit" class="btn btn-primary btn-block">Inserisci Ricetta</button>
 </form>
 <%
 }

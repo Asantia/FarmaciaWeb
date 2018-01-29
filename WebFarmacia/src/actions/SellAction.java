@@ -41,7 +41,8 @@ public class SellAction extends Action {
 
                 while (rs.next()) {
                     carrello.setPrezzo(carrello.getPrezzo()+rs.getInt("prezzo")*b[i]);
-                    carrello.setRicetta(carrello.isRicetta()||rs.getBoolean("ricetta"));
+                    if(rs.getBoolean("ricetta"))
+                        carrello.setRicetta(carrello.getRicetta()+1);
                 }
                 rs.close();
                 st.close();
@@ -53,8 +54,8 @@ public class SellAction extends Action {
             }
         }
         request.getSession().setAttribute("carrello", carrello);
-
-        if(carrello.isRicetta())
+        System.out.print("Numero ricette: "+carrello.getRicetta());
+        if(carrello.getRicetta()>0)
             response.getOutputStream().print("cercaPazienteTitolare");
         else
             response.getOutputStream().print("venditafinita");

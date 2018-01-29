@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"> </head>
+    <link rel="stylesheet" href="https://pingendo.github.io/templates/aquamarine/theme.css" type="text/css"> </head>
 
 <body>
 <jsp:useBean id="userCon" scope="session" class="beans.UtenteConnessoBean"/>
 <jsp:useBean id="pazCon" scope="session" class="beans.PazienteCercatoBean"/>
+<jsp:useBean id="carrello" scope="session" class="beans.CarrelloBean"/>
 
 <%
     if(userCon.getConnesso() && (userCon.getAbilitazione().equals("TF") || userCon.getAbilitazione().equals("DF"))){
@@ -47,7 +48,7 @@
         <a href="messaggiDipendenti.jsp" class="nav-link">Messaggi</a>
     </li>
     <li class="nav-item">
-        <a href="venditafinita.jsp" class="nav-link">Vendi</a>
+        <a href="vendixTitolare.jsp" class="nav-link">Vendi</a>
     </li>
     <%
         }
@@ -58,7 +59,11 @@
     </ul>
             <p>Paziente gia' inserito</p>
             <div class="col-md-4">
-                <a class="btn btn-primary btn-lg btn-block" href="venditafinita.jsp">Procedi alla vendita</a>
+                <%if (carrello.getRicetta()>0){%>
+                    <a class="btn btn-primary btn-lg btn-block" href="InserisciRicetta.jsp">Procedi alla vendita</a>
+                <%}else{%>
+                    <a class="btn btn-primary btn-lg btn-block" href="venditafinita.jsp">Procedi alla vendita</a>
+                <%}%>
             </div>
 
         <%

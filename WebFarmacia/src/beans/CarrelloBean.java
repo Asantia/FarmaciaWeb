@@ -9,7 +9,7 @@ public class CarrelloBean implements java.io.Serializable {
     int[] listaid=null;
     int[] listaq=null;
     double prezzo=0;
-    boolean ricetta=false;
+    int ricetta=0;
 
     public CarrelloBean(){}
 
@@ -37,11 +37,11 @@ public class CarrelloBean implements java.io.Serializable {
         this.prezzo = prezzo;
     }
 
-    public boolean isRicetta() {
+    public int getRicetta() {
         return ricetta;
     }
 
-    public void setRicetta(boolean ricetta) {
+    public void setRicetta(int ricetta) {
         this.ricetta = ricetta;
     }
 }

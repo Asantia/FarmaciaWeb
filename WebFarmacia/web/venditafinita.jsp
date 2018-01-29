@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css">
+    <link rel="stylesheet" href="https://pingendo.github.io/templates/aquamarine/theme.css" type="text/css">
     <script src="library/jquery-3.2.1.min.js"></script>
     <script src="js/NewStuff.js"></script>
 
@@ -72,9 +72,10 @@
         <% SellUtil carrello1 = new SellUtil();%>
         <%=carrello1.printPrezzo(carrello) %>
     </p>
-    // e qua parte la action che mette i record della vendita nel db
-    <input type="button" id="terminavendita" class="terminavendita" value="Termina Vendita">
 
+    <form action="endsell.do">
+    <input type="submit" id="terminavendita" class="terminavendita" value="Termina Vendita">
+    </form>
         <%
     if(!userCon.getConnesso() || (!userCon.getAbilitazione().equals("TF") && !userCon.getAbilitazione().equals("DF") && !userCon.getAbilitazione().equals("OB"))){
 %>
