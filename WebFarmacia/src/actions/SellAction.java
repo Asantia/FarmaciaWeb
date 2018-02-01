@@ -11,6 +11,8 @@ import java.sql.*;
 import java.util.Arrays;
 
 import beans.CarrelloBean;
+import beans.UtenteConnessoBean;
+
 /**
  * Created by csantia on 9/25/2017.
  */
@@ -24,6 +26,9 @@ public class SellAction extends Action {
         CarrelloBean carrello = new CarrelloBean();
         carrello.setListaid(a);
         carrello.setListaq(b);
+
+        HttpSession session = request.getSession(true);
+        UtenteConnessoBean u = (UtenteConnessoBean)session.getAttribute("userCon");
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -39,10 +44,11 @@ public class SellAction extends Action {
                 st.setInt(1, a[i]);
                 rs=st.executeQuery();
 
+
                 while (rs.next()) {
-                    carrello.setPrezzo(carrello.getPrezzo()+rs.getInt("prezzo")*b[i]);
-                    if(rs.getBoolean("ricetta"))
-                        carrello.setRicetta(carrello.getRicetta()+1);
+                        carrello.setPrezzo(carrello.getPrezzo() + rs.getInt("prezzo") * b[i]);
+                        if (rs.getBoolean("ricetta"))
+                            carrello.setRicetta(carrello.getRicetta() + 1);
                 }
                 rs.close();
                 st.close();
@@ -55,10 +61,12 @@ public class SellAction extends Action {
         }
         request.getSession().setAttribute("carrello", carrello);
         System.out.print("Numero ricette: "+carrello.getRicetta());
-        if(carrello.getRicetta()>0)
-            response.getOutputStream().print("cercaPazienteTitolare");
-        else
-            response.getOutputStream().print("venditafinita");
+
+            if (carrello.getRicetta() > 0)
+                response.getOutputStream().print("cercaPazienteTitolare");
+            else
+                response.getOutputStream().print("venditafinita");
+
         return null;
         //return mapping.findForward("cercaPazienteTitolare");
         /*

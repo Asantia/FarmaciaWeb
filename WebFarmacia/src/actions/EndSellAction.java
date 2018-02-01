@@ -52,7 +52,7 @@ public class EndSellAction extends Action {
 
                 conn.close();
             } catch (Exception e) {
-                System.out.println("Impossibile inserire il nuovo paziente nel DB: " + e.getMessage());
+                System.out.println("Impossibile la vendita nel DB: " + e.getMessage());
                 if (u.getAbilitazione().equals("TF"))
                     return mapping.findForward("failTitolare");
                 else

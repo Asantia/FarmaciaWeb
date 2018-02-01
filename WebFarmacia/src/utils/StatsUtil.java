@@ -25,14 +25,14 @@ public class StatsUtil {
 
     public String bestselling(){
         String output="";
-        String query="SELECT farmaco.nome, farmaco.dosaggio, vendita.quantita FROM farmaco JOIN vendita ON farmaco.idfarmaco=vendita.idfarmaco ORDER BY vendita.quantita DESC";
+        String query="SELECT COUNT(farmaco.nome) AS cont,farmaco.nome,farmaco.dosaggio FROM farmaco JOIN vendita ON farmaco.idfarmaco = vendita.idfarmaco GROUP BY farmaco.nome, farmaco.dosaggio ORDER BY cont DESC";
         try {
             st = conn.prepareStatement(query);
             ResultSet rs = st.executeQuery();
 
             int i=1;
             while (rs.next() && i<=10) {
-                output = output.concat("<tr><td><p>" + i + ". </p></td><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("quantita") + "</p></td>");
+                output = output.concat("<tr><td><p>" + i + ". </p></td><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("cont") + "</p></td>");
                 i++;
             }
 
@@ -47,8 +47,17 @@ public class StatsUtil {
     }
 
     public String bestselling(int idfarmaciaUtente){
+
         String output="";
-        String query="SELECT farmaco.nome, farmaco.dosaggio, vendita.quantita FROM farmaco JOIN vendita ON farmaco.idfarmaco=vendita.idfarmaco JOIN utente ON venditore=email WHERE utente.idfarmacia=? ORDER BY vendita.quantita DESC";
+        String query="SELECT COUNT(farmaco.nome) AS cont,\n" +
+                "    farmaco.nome,\n" +
+                "    farmaco.dosaggio\n" +
+                "  FROM farmaco\n" +
+                "    JOIN vendita ON farmaco.idfarmaco = vendita.idfarmaco\n" +
+                "    JOIN utente ON venditore = email\n" +
+                "  WHERE utente.idfarmacia = ?\n" +
+                "    GROUP BY farmaco.nome, farmaco.dosaggio\n" +
+                "  ORDER BY cont DESC";
         try {
             st = conn.prepareStatement(query);
             st.setInt(1,idfarmaciaUtente);
@@ -56,7 +65,7 @@ public class StatsUtil {
 
             int i=1;
             while (rs.next() && i<=10) {
-                output = output.concat("<tr><td><p>" + i + ". </p></td><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("quantita") + "</p></td>");
+                output = output.concat("<tr><td><p>" + i + ". </p></td><td><p>" + rs.getString("nome") + "</p></td><td><p>" + rs.getString("dosaggio") + "</p></td><td><p>" + rs.getString("cont") + "</p></td>");
                 i++;
             }
 

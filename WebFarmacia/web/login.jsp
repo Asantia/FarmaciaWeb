@@ -27,11 +27,7 @@
                         <input class="form-control" name="password" placeholder="Password" type="password"> </div>
                     <button type="submit" class="btn btn-primary" value="Login">Login</button>
                 </form>
-            </div>
-            <div class="col-md-8 text-white">
-                <h1 class="text-primary display-4 w-100 m-5 p-5">Farmacie del Piemonte
-                    <br>
-                </h1>
+                <h1 class="text-primary display-4 w-100 m-5 p-5">Farmacie del Piemonte</h1>
             </div>
         </div>
     </div>
